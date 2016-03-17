@@ -75,12 +75,12 @@
 								<div class="row">
 								</div>
 								<div class="text-right">
-                                	<input id="dontHaveAccount"type="submit" placeholder="Send message" value="I don't have an account">
+                                	<input id="dontHaveAccount" type="submit" placeholder="Send message" value="I don't have an account">
 									<input type="submit" placeholder="Send message" value="Sign In">
 								</div>
 							</form>
 						</div>
-						<div id="registerBox"class="col-md-6 col-md-offset-1" style="display:none;">
+						<div id="registerBox"class="col-md-6 col-md-offset-1">
 							<h2 class="section-title">Registration</h2>
 							<p>If you don't already have an account with us, register to get special treatment!</p>
 							<form action="#" class="contact-form">
@@ -129,9 +129,13 @@
 		
 		<script src="js/jquery-1.11.1.min.js">
         
+		$(document).ready(function(){
+			$("#registerBox").hide();
+		});
+
 		$("#dontHaveAccount").click() {
-			$('#registerBox').fadeIn("slow");
-		}
+			$('#registerBox').show("slow");
+		};
 		
         </script>
 		<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&amp;language=en"></script>
