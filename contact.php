@@ -1,3 +1,46 @@
+<?php 
+
+if ($_POST["feedback"]) {
+	
+	if (!$_POST['name']){
+		
+		$error = "<br/>Please enter your name";
+		
+	}
+	
+	if (!$_POST['email']){
+		
+		$error .= "<br/>Please enter your email";
+		
+	}
+	
+	if (!$_POST['message']){
+		
+		$error .= "<br/>Please enter your message";
+		
+	}
+	
+	if ($_POST['email']!="" AND !filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+
+	$error.="<br />Please enter a valid email address";
+	
+	}
+	
+	if ($error){
+		
+		$result = '<div class="alert alert-danger"><strong>There were error(s) in the form:</strong>'.$error.'</div>';
+		
+	}
+
+          $body = $_POST["message"];
+          mail("placeholder@notActuallyMyEmail.com","Feedback from user",$body);
+
+          }
+	
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -10,6 +53,10 @@
 		<!-- Loading third party fonts -->
 		<link href="http://fonts.googleapis.com/css?family=Roboto:300,400,700|" rel="stylesheet" type="text/css">
 		<link href="fonts/font-awesome.min.css" rel="stylesheet" type="text/css">
+		
+		<!-- jQuery Bootstrap scripts -->
+		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
 		<!-- Loading main css file -->
 		<link rel="stylesheet" href="style.css">
@@ -81,19 +128,21 @@
 						</div>
 						<div class="col-md-6 col-md-offset-1">
 							<h2 class="section-title">Contact us</h2>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi consectetur inventore ducimus, facilis, numquam id soluta omnis eius recusandae nesciunt vero repellat harum cum. Nisi facilis odit hic, ipsum sed!</p>
-							<form action="#" class="contact-form">
+							<p>Feel free to send us fan mail, hate mail, ask us a question, or make a suggestion to improve our services. We'll be in touch!</p>
+							<?php echo $result; ?>
+							
+							<form method="post" action="#" class="contact-form">
 								<div class="row">
-									<div class="col-md-6"><input type="text" placeholder="Your name..."></div>
-									<div class="col-md-6"><input type="text" placeholder="Email Addresss..."></div>
+									<div class="col-md-6"><input name="name" type="text" placeholder="Your name..."></div>
+									<div class="col-md-6"><input name="email" type="text" placeholder="Email Addresss..."></div>
 								</div>
 								<div class="row">
-									<div class="col-md-6"><input type="text" placeholder="Company name..."></div>
-									<div class="col-md-6"><input type="text" placeholder="Website..."></div>
+									<div class="col-md-6"><input name="company" type="text" placeholder="Company name..."></div>
+									<div class="col-md-6"><input name="website" type="text" placeholder="Website..."></div>
 								</div>
-								<textarea name="" placeholder="Message..."></textarea>
+								<textarea name="message" placeholder="Message..."></textarea>
 								<div class="text-right">
-									<input type="submit" placeholder="Send message">
+									<input name="feedback" type="submit" placeholder="Send message">
 								</div>
 							</form>
 
