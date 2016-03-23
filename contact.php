@@ -1,5 +1,7 @@
 <?php 
 
+$errors = false;
+
 if ($_POST["feedback"]) {
 	
 	if (!$_POST['name']){
@@ -30,10 +32,23 @@ if ($_POST["feedback"]) {
 		
 		$result = '<div class="alert alert-danger"><strong>There were error(s) in the form:</strong>'.$error.'</div>';
 		
-	}
+	} else {
 
-          $body = $_POST["message"];
-          mail("placeholder@notActuallyMyEmail.com","Feedback from user",$body);
+    if (!$_POST['company'] == '') {
+	
+    	$body = "Company: ".$_POST['company']."<br>";
+        
+     }
+     
+    if (!$_POST['Website'] == '') {
+	
+    	$body .= "Website: ".$_POST['website']."<br>";
+        
+    }
+
+                 $name = $_POST["name"];
+                 $body = $_POST["message"];
+                 mail("30044709@blackpool.ac.uk","Feedback from $name",$body);
 
           }
 	
@@ -66,6 +81,19 @@ if ($_POST["feedback"]) {
 		<script src="js/ie-support/respond.js"></script>
 		<![endif]-->
 
+<script>
+$(document).ready(function() {
+
+	$("li").hover() {
+		
+		$(this).toggleClass("current-menu-item");
+	
+	}
+
+}
+
+</script>
+
 	</head>
 
 
@@ -86,7 +114,7 @@ if ($_POST["feedback"]) {
 					<div class="main-navigation">
 						<button type="button" class="menu-toggle"><i class="fa fa-bars"></i></button>
 						<ul class="menu">
-							<li class="menu-item current-menu-item"><a href="index.html">Home</a></li>
+							<li class="menu-item"><a href="index.html">Home</a></li>
 							<li class="menu-item"><a href="news.html">News</a></li>
 							<li class="menu-item"><a href="live-cameras.html">Live cameras</a></li>
 							<li class="menu-item"><a href="photos.html">Photos</a></li>
