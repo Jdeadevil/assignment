@@ -7,12 +7,12 @@
 		
 			<?php include 'scripts.php';?>
      
-     <script>   
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js">
 		 $(document).ready(function(){
 	
 			$("#registerBox").hide();
 	
-			$( "#dontHaveAccount" ).click(function() {
+			$("#dontHaveAccount").click(function() {
 			
 				$("#registerBox").show("slow");
 				
@@ -37,7 +37,7 @@
 			<main class="main-content">
 				<div class="container">
 					<div class="breadcrumb">
-						<a href="index.html">Home</a>
+						<a href="index.php">Home</a>
 						<span>Contact</span>
 					</div>
 				</div>
